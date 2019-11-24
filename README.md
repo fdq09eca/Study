@@ -12,11 +12,12 @@ Currently, I am doing the following courses:
 4. [Automate the Boring Stuff with Python Programming by Al Sweigart](https://www.udemy.com/course/automate/)
 
 
-## I will
-I desire:
+## I will/desire
 - Front end and back end development skills
 - Building Web scraper/crawler
 - Ethical hacking
+- Study more maths for machine learning
+- understand more about SKlearn and Neural network
 
 
 ## I know
