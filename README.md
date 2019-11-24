@@ -19,8 +19,7 @@ I desire:
 - Ethical hacking
 
 
-## Current Skill stack.
-## Programming
+## I know
 - Python - Intermediate
     - pandas
     - numpy
