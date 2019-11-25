@@ -26,7 +26,7 @@ def report():
         if not re.match('(?=.*[A-Z]).*', username):
             reasons.append('No uppercase')
 
-    return render_template('07-myreport_pos.html', username = username, match = match, reasons = reasons)
+    return render_template('07-myreport.html', username = username, match = match, reasons = reasons)
     # else:
     #     return render_template('07-myreport_neg.html', username = username)
 
