@@ -17,7 +17,7 @@ Currently, I am doing the following courses:
 - Building Web scraper/crawler
 - Ethical hacking
 - Study more maths for machine learning
-- understand more about SKlearn and Neural network
+- understand more about SKlearn and Neural network!
 
 
 ## I know
@@ -29,3 +29,4 @@ Currently, I am doing the following courses:
     - seaborn
 - SQL
 - HTML, CSS, SASS
+- ok i am in cuhk
