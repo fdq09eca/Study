@@ -1,0 +1,48 @@
+{% extends '07-mybase.html' %}
+{% block content %}
+<div class="jumbotron">
+{% if match %}
+
+<h1>Successful. <em>{{username}}</em> is a valid username.</h1>
+<p>Well done, your username passes the requirements.</p>
+
+{% else %}
+
+<h1>Unsuccessful,
+
+    {% if username|length > 0 %}
+    <em>{{username}}</em> is an invalid username.</h1>
+
+    <h2>Reason:</h2>
+
+    <ol>
+
+    {%for reason in reasons%}
+
+        <li><strong>{{ reason }}</strong></li>
+
+    {% endfor %}
+
+    </ol>
+
+    {% else %}
+
+    <em>No</em> username submitted.</h1>
+    {% endif %}
+
+
+
+<p>A valid username contains the following:</p>
+    <ul>
+         <li>1 uppercase</li>
+         <li>1 lowercase</li>
+         <li>end with a number</li>
+         <li>for example: Abc1234</li>
+    </ul>
+<p>Please back to the <a href="{{ url_for('index') }}">homepage</a> and try again. Thank you.</p>
+
+{% endif %}
+</div>
+
+
+{% endblock %}

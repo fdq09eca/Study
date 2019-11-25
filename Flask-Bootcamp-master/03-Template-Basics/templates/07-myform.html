@@ -1,0 +1,18 @@
+{% extends '07-mybase.html' %}
+{% block content %}
+<div class="jumbotron">
+    <h1>Welcome, please enter your username.</h1>
+    <p>A valid username contains the following</p>
+        <ul>
+            <li>1 uppercase</li>
+            <li>1 lowercase</li>
+            <li>end with a number</li>
+        </ul>
+    <form action="{{ url_for('report') }}">
+        <label for="user_name">Username</label>
+        <input type="text" name="user_name">
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+{% endblock %}
