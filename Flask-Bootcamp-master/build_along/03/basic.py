@@ -16,4 +16,4 @@ def thankyou():
     return render_template('thankyou.html', first = first, last = last)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
