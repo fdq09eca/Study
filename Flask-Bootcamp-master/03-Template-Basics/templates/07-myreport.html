@@ -9,25 +9,16 @@
 {% else %}
 
 <h1>Unsuccessful,
-
     {% if username|length > 0 %}
-    <em>{{username}}</em> is an invalid username.</h1>
-
-    <h2>Reason:</h2>
-
-    <ol>
-
-    {%for reason in reasons%}
-
-        <li><strong>{{ reason }}</strong></li>
-
-    {% endfor %}
-
-    </ol>
-
+        <em>{{username}}</em> is an invalid username.</h1>
+        <h2>Reason:</h2>
+        <ol>
+            {%for reason in reasons%}
+                <li><strong>{{ reason }}</strong></li>
+            {% endfor %}
+        </ol>
     {% else %}
-
-    <em>No</em> username submitted.</h1>
+        <em>No</em> username submitted.</h1>
     {% endif %}
 
 
