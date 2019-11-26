@@ -1,6 +1,7 @@
 {% extends '07-mybase.html' %}
 {% block content %}
 <div class="jumbotron">
+h1{Let's see how you perform...}
 {% if match %}
 
 <h1>Successful. <em>{{username}}</em> is a valid username.</h1>
@@ -11,12 +12,6 @@
 <h1>Unsuccessful,
     {% if username|length > 0 %}
         <em>{{username}}</em> is an invalid username.</h1>
-        <h2>Reason:</h2>
-        <ol>
-            {% for reason in reasons %}
-                <li><strong>{{ reason }}</strong></li>
-            {% endfor %}
-        </ol>
     {% else %}
         <em>No</em> username submitted.</h1>
     {% endif %}
@@ -24,6 +19,12 @@
 <p>Please back to <a href="{{ url_for('index') }}">homepage</a> and try again. Thank you.</p>
 
 {% endif %}
+<h2>Reason:</h2>
+<ol>
+    {% for reason in reasons %}
+    <li><strong>{{ reason }}</strong></li>
+    {% endfor %}
+</ol>
 </div>
 
 

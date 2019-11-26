@@ -1,5 +1,5 @@
 <p>
-{% if breed %}
+{% if form.validate_on_submit() %}
   The breed you entered is {{breed}}.
   You can update it in the form below:
 {% else %}

@@ -3,17 +3,24 @@
 <form  method="POST">
     {# This hidden_tag is a CSRF security feature. #}
     {{ form.hidden_tag() }}
-    {{ form.breed.label }} {{form.breed}}
-    <br>
-    {{ form.neutered.label}} {{form.neutered}}
-    <br>
-    {{form.food_choice.label}}{{form.food_choice}}
-    <br>
-    {{form.mood.label}}{{form.mood}}
-    <br>
-    Any other feedback?
+
+    {% for att in atts %}
+    {% if att == 'feedback' %}
+        Any other feedback?
+    {%endif%}
+
+    {% if att != 'feedback' and att != 'submit' %}
+        {{form |attr(att) |attr('label')}} {{form |attr(att)}}
+        <br>
+    {% else %}
+        <br>
+        {{form|attr(att)}}
+    {% endif %}
+    {% endfor %}
+
+    <!-- Any other feedback?
     <br>
     {{form.feedback}}
    <br>
-    {{ form.submit() }}
+    {{ form.submit() }} -->
 </form>

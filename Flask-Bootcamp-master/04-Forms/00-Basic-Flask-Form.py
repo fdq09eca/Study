@@ -22,7 +22,7 @@ class InfoForm(FlaskForm):
 def index():
     # Set the breed to a boolean False.
     # So we can use it in an if statement in the html.
-    breed = False
+    breed = False # like list = [].. create a variable for updating value.
     # Create instance of the form.
     form = InfoForm()
     # If the form is valid on submission (we'll talk about validation next)
