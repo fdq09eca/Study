@@ -1,6 +1,7 @@
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate #pip install Flask-Migrate
 ######################################
 #### SET UP OUR SQLite DATABASE #####
 ####################################
@@ -18,7 +19,7 @@ db = SQLAlchemy(app)
 #####################################
 ####################################
 ###################################
-
+Migrate(app,db)
 # Let's create our first model!
 # We inherit from db.Model class
 class Puppy(db.Model):
@@ -40,13 +41,14 @@ class Puppy(db.Model):
     name = db.Column(db.Text)
     # Puppy age in years
     age = db.Column(db.Integer)
+    # breed = db.Column(db.Text)
 
     # This sets what an instance in this table will have
     # Note the id will be auto-created for us later, so we don't add it here!
     def __init__(self,name,age):
         self.name = name
         self.age = age
-
+        # self.breed = breed
     def __repr__(self):
         # This is the string representation of a puppy in the model
         return f"Puppy {self.name} is {self.age} years old."

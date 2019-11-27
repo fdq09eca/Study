@@ -10,12 +10,10 @@
 {# Source for this bootstrapcode:
 https://getbootstrap.com/docs/4.0/components/alerts/#dismissing #}
 <div class="container">
-
-
   {# get_flashed_messages() is auto sent to the template with the flash() call #}
       {% for mess in get_flashed_messages()  %}
       <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close" class="fade close">
+        <button type="button" class="fade close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
           {# &times; is a crossmark #}
         </button>
@@ -23,10 +21,17 @@ https://getbootstrap.com/docs/4.0/components/alerts/#dismissing #}
         </div>
       {% endfor %}
 
-
 <form method="POST">
     {# This hidden_tag is a CSRF security feature. #}
     {{ form.hidden_tag() }}
-    {{ form.submit() }}
+    {% for att in attrs %}
+    {% if att == 'submit' %}
+            {{form|attr(att)}}
+    {% else %}
+            {{form|attr(att)|attr('label')}} {{ form|attr(att) }}
+            <br>
+    {% endif %}
+    {% endfor %}
+
 </form>
 </div>
