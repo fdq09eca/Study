@@ -23,9 +23,9 @@ class Puppy(db.Model):
 
     def __repr__(self):
         if self.owner:
-            return f'Puppy ID:{self.id} {self.name} is adpoted by {self.owner.name}'
+            return f'Puppy ID:{self.id} - {self.name} is adpoted by {self.owner.name}'
         else:
-            return f'Puppy ID:{self.id} {self.name} has no owner yet.'
+            return f'Puppy ID:{self.id} - {self.name} has no owner yet.'
 
 class Owner(db.Model):
     id = db.Column(db.Integer,primary_key= True)
