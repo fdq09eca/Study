@@ -74,6 +74,7 @@ def add_pup():
         return redirect(url_for('list_pup'))
 
     return render_template('add.html',form=form)
+
 @app.route('/add_owner', methods=['GET', 'POST'])
 def add_owner():
 

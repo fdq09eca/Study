@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="jumbotron">
+  <h1 class="display-3">Puppies Database</h1>
+  <p class="lead">This is a simple database that list the available puppies and their details.</p>
+  <hr class="m-y-md">
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Puppy Name</th>
+        <th>Owner</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for a in list %}
+    <tr>
+        <td>{{ a.id }}</td>
+        <td>{{ a.name }}</td>
+
+        {% if a.owner %}
+        <td>{{a.owner.name}}</td>
+        {% else %}
+        <td>No owner</td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- <h1>Here is the add page</h1> -->
+<div class="jumbotron">
+  <div class="container">
+      <h1 class="display-3">Have a puppy that needs to to be adpoted?</h1>
+      <p class="lead">Add a new puppy to our database!</p>
+      <form class="form-inline" method="post">
+          {{ form.hidden_tag() }}
+          {{ form.name.label}}
+          {{form.name}}
+          {{ form.submit(class_="btn btn-primary") }}
+      </form>
+  </div>
+</div>
+{% endblock %}

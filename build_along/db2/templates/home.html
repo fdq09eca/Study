@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="jumbotron">
+  <h1 class="display-3">Welcome</h1>
+  <hr class="m-y-md">
+  <p class="lead">It is a mini-project. It builds a website by utilising a local database, it includes the ForeginKey and relationship. Used technologies are the following</p>
+  <ul class="list-inline">
+    <li>Flask</li>
+    <li>SQLalchemy</li>
+    <li>Bootstrap</li>
+  </ul>
+  <p class="lead">
+    <span class="font-weight-bold">Things I learned</span>
+  </p>
+  <ul>
+    <li>Do the <kbd>form.submit(class_='foo')</kbd>  later, make sure everything works before caring the css/appearance, otherwise something strange will happen.</li>
+    <li><span class="text-danger font-weight-bold">TYPE CAREFULLY</span>, there is a lot of typo even I type slow..</li>
+    <li>whenever there is a structural change, for example, ForeginKey relationship, migrate the and upgrate the new version before HTML rendering.</li>
+    <li>Must initiate the <kbd>__tablename__</kbd> in the <kbd>Class foo(SQLAlchemy.Model)</kbd>, the <kbd>SQLAlchemy.ForeignKey()</kbd> requires a <kbd>__tablename__</kbd> not a <kbd>Class</kbd></li>
+    <li>it is possible to use a <kbd>if</kbd> in <kbd>for</kbd> loop in <strong>Jinja</strong></li>
+</ul>
+</div>
+
+{% endblock %}

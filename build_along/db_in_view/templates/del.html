@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- <h1>Here is the delete page.</h1> -->
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">Did a puppy get adopted?</h1>
+    <p class="lead">If so, please provide their ID to remove them from the database, Thank you, :)</p>
+    <form class="form-inline" method="post">
+        {{ form.hidden_tag() }}
+        Adpoted puppy's ID: {{ form.id() }}
+      <!-- <button type="submit" ></button> -->
+          {{form.submit(class_="btn btn-danger")}}
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -60,7 +60,7 @@ def add_pup():
 def list_pup():
     # Grab a list of puppies from database.
     puppies = Puppy.query.all()
-    return render_template('list.html', puppies=puppies)
+    return render_template('list.html', data=puppies)
 
 @app.route('/delete', methods=['GET', 'POST'])
 def del_pup():
