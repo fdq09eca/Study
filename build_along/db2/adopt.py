@@ -3,7 +3,7 @@ from flask import Flask, render_template, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from form import Addform, Delform, Ownerform
-
+# config
 basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 
@@ -12,18 +12,14 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir, 'data
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 Migrate(app, db)
-
+# models
 class Puppy(db.Model):
     __tablename__ = 'puppies'
     id = db.Column(db.Integer, primary_key = True)
-
     name = db.Column(db.Text)
     owner =   db.relationship('Owner', backref='pet', uselist=False)
-
     def __init__(self, name):
         self.name = name
-
-
 
     def __repr__(self):
         if self.owner:
@@ -39,6 +35,7 @@ class Owner(db.Model):
     def __init__(self, name, pup_id):
         self.name = name
         self.pup_id = pup_id
+# view functions
 
 @app.route('/')
 def index():
