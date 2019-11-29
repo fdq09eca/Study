@@ -5,15 +5,15 @@
 from models import db,Puppy,Owner,Toy
 
 # Create 2 puppies
-rufus = Puppy("Rufus")
-fido = Puppy("Fido")
-
-# Add puppies to database
-db.session.add_all([rufus,fido])
-db.session.commit()
-
-# Check with a query, this prints out all the puppies!
-print(Puppy.query.all())
+# rufus = Puppy("Amy")
+# fido = Puppy("Bob")
+#
+# # Add puppies to database
+# db.session.add_all([rufus,fido])
+# db.session.commit()
+#
+# # Check with a query, this prints out all the puppies!
+# print(Puppy.query.all())
 
 # Grab Rufus from database
 # Grab all puppies with the name "Rufus", returns a list, so index [0]

@@ -13,17 +13,24 @@ app.config['SECRET_KEY'] = 'mysecretkey'
 class SimpleForm(FlaskForm):
     # Just One Button
     submit = SubmitField('Click Me.')
-
+    breed = StringField('What breed?')
+form_attrs = ['submit', 'breed']
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = SimpleForm()
 
     if form.validate_on_submit():
-        flash("You just clicked the button!")
+        for att in form_attrs:
+            session[att] = getattr(form, att).data
+            if att != 'submit':
+                flash(f"Your {att} is {session[att]}")
+            else:
+                flash(f"Form is submitted")
+
+
 
         return redirect(url_for('index'))
-    return render_template('02-home.html', form=form)
-
+    return render_template('02-home.html', form=form, attrs = ['breed', 'submit'])
 
 if __name__ == '__main__':
     app.run(debug=True)
