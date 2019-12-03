@@ -31,3 +31,6 @@ class Owner(db.Model):
 
     def __repr__(self):
         return f"Owner Name: {self.name}"
+
+import os
+print(os.path.dirname(os.path.abspath(__file__)))

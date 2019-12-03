@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block foo %}
+<div class="jumbotron">
+    <div class="container">
+      <h1>Homepage.</h1>
+    {% if current_user.is_authenticated %}
+            <h2>Hello, {{ current_user.username }}</h2>
+            <div class="flex-row">
+                <a href="{{url_for('logout')}}" ><button type="button" class="btn btn-primary">Logout</button></a>
+            </div>
+    {% else %}
+    <p>This project is for getting myself familiar with building largeer flask application, and the <code>flask_login</code> module.</p>
+<div class="flex-row">
+    <a href="{{url_for('login')}}" ><button type="button" class="btn btn-primary">Login</button></a>
+    <a href="{{url_for('register')}}" ><button type="button" class="btn btn-primary">Register</button></a>
+</div>
+
+    <h2>I learned</h2>
+    <ul>
+      <li>check if <code>{%raw%}{{ form.hidden_tag() }}{%endraw%}</code> is included in the template if submit button is not responding.</li>
+      <li>check if you have included allnecessary dependencies, for example <code>flash, redirect, url_for</code> </li>
+      <li>flask custom in-line validators must prefix with <code>validate_</code></li>
+      <li>for CRUD action, make sure the view function is decorated with <code>@app.route('end-point',methods=['GET','POST'])</code></li>
+    </ul>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

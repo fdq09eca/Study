@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block foo %}
+<div class="jumbotron">
+    <div class="container">
+      <h1>User Database</h1>
+    {% if current_user.is_authenticated %}
+            <h2>Hello, {{ current_user.username }}.</h2>
+            <div class="table-responsive-sm  text-center">
+                <table class="table table-dark table-striped">
+                  <thead class="thead-inverse text-center">
+                    <tr>
+                      <th>ID</th>
+                      <th>Email</th>
+                      <th>Username</th>
+                      <!-- <th>Hash password</th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {%for element in data %}
+                    <tr>
+                      <td>{{element.id}}</td>
+                      <td>{{element.email}}</td>
+                      <td>{{element.username}}</td>
+                      <!-- <td>{{element.password_hash}}</td> -->
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+            <div class='container'>
+                <h2>Delete user</h2>
+                <form method="post">
+                    <!-- {{form.hidden_tag()}} -->
+                    {% for field in form %}
+                    {% if field.name == 'submit' %}
+                        {{field(class_="btn btn-danger btn-lg btn-block")}}
+                    {% elif field.name == 'csrf_token' %}
+                        {{form.hidden_tag()}}
+                    {% else %}
+                        <div class="form-group row">{{ field.label(class="col-sm-2 col-form-label") }}
+                        <div class="col-sm-10">{{field(class="form-control")}}
+                            <small class="form-text text-danger">{{', '.join(field.errors)}}</small>
+                        </div>
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                </form>
+
+            </div>
+    {% else %}
+            <h2>Please login or register.</h2>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
