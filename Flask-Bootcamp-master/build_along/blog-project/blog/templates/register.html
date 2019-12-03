@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="jumbotron">
+  <h1 class="display-3">Regisration</h1>
+  <hr>
+  <form method='post'>
+      {% for field in form%}
+      {% if field.name == 'submit' %}
+          {{field(class="btn btn-primary btn-lg") }}
+      {%elif field.name == 'csrf_token'%}
+      {{form.hidden_tag()}}
+      {% else %}
+      <fieldset class="form-group">
+          {{ field(class="form-control") }}
+          <small class="form-text text-danger">{{ ', '.join(field.errors) }}</small>
+      </fieldset>
+      {% endif %}
+      {% endfor %}
+  </form>
+</div>
+{% endblock %}

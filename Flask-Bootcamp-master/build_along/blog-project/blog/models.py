@@ -1,15 +1,15 @@
-from blog import db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
+from blog import db, login_manager
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key = True)
     profile_img = db.Column(db.String, nullable = False, default = 'default_profile_img.png')
     email = db.Column(db.String, unique = True, index = True)
     username = db.Column(db.String, unique = True, index = True)
-    password = db.Column(db.String)
+    password_hash = db.Column(db.String)
     post = db.relationship('Post', backref = 'author', lazy = True)
 
     def __init__(self, email, username, password):
@@ -23,11 +23,11 @@ class User(db.Model):
         return f'username: {self.username}\n email: {self.email}'
 
 @login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(user_id)
+def load_user(id):
+    return User.query.get(int(id))
 
 class Post(db.Model):
-    __tablename__
+    __tablename__ = 'posts'
     users = db.relationship(User)
     id = db.Column(db.Integer, primary_key =True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)

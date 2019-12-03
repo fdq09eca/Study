@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="jumbotron">
-  <h1 class="display-3">About</h1>
-  <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <h1 class="display-3">Info</h1>
+  <p class="lead">Things I learned from debugging</p>
   <hr class="m-y-md">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-  </p>
+ <ul class="list-group">
+    <li class="list-group-item">Make sure you used  <code>UserMixin</code> and <code>@login_manager.load_user</code> in the <code>class User</code> whenever writing the view function for login</li>
+    <li class="list-group-item"><code>password_hash</code> should be defined as a <code>db.Column</code>, not <code>password</code>. Since there is a method for <code>check_password()</code>.</li>
+    <li class="list-group-item">when you need to drop a columns from SQLAlchemy Database, do this:<br>
+        <code>
+        with op.batch_alter_table('__tablename__') as batch_op:<br>
+        batch_op.drop_column('column_name')
+        </code>,see <a href="https://www.youtube.com/watch?v=CxCK1DkikgA">Here</a> </li>
+    <li class="list-group-item">
+        <blockquote cite="https://www.reddit.com/r/flask/comments/67lu0m/flasklogin_why_do_you_have_to_validate_a_next_url/">
+        <code>return redirect(url_for(request.args.get('next', 'index')))</code></blockquote>The 1st argument <code>'next'</code> is grabing the <code>'next'</code> parameters in the url and the 2nd argument <code>'index'</code> forces the parameters values.<br>For example: <code>http://yourealsite.com/login/?<kbd>next</kbd>=<kbd>http://my-fake-malicous-site.com/login/</kbd></code> the 2nd argument forces 'index' to be the value of next instead of some suspciou endpoint, see <a href="https://stackoverflow.com/questions/15182696/multiple-parameters-in-in-flask-approute">here</a>, <a href="https://werkzeug.palletsprojects.com/en/0.16.x/datastructures/#werkzeug.datastructures.MultiDict.get">here</a> and <a href="https://github.com/lingthio/Flask-User/issues/119">here</a>.</li>
+
+</ul>
 </div>
 {% endblock %}
