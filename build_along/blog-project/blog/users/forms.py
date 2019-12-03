@@ -6,14 +6,14 @@ from flask_login import current_user
 from blog.models import User
 
 class Login_form(FlaskForm):
-    email = StringField('Email ', validators=[Email(), DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    email = StringField('Email ', validators=[Email(), DataRequired()], render_kw={"placeholder": 'Email'})
+    password = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": 'Password'})
     submit = SubmitField('Login')
 
 class Reg_form(FlaskForm):
-    email = StringField('Email ', validators=[Email(), DataRequired()])
-    username = StringField('Username ', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired(), EqualTo('confirm_pw', message = 'Password must match.')])
+    email = StringField('Email ', validators=[Email(), DataRequired()], render_kw={"placeholder": 'Email'})
+    username = StringField('Username ', validators=[DataRequired()], render_kw={"placeholder": 'Username'})
+    password = PasswordField('Password', validators=[DataRequired(), EqualTo('confirm_pw', message = 'Password must match.')], render_kw={"placeholder": 'Password'})
     confirm_pw = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Register')
 
@@ -25,8 +25,8 @@ class Reg_form(FlaskForm):
             raise ValidationError('Username has been registered')
 
 class Update_User_form(FlaskForm):
-    email = StringField('Email ', validators=[Email(), DataRequired()])
-    username = StringField('Username ', validators=[DataRequired()])
+    email = StringField('Email ', validators=[Email(), DataRequired()], render_kw={"placeholder": 'Email'})
+    username = StringField('Username ', validators=[DataRequired()], render_kw={"placeholder": 'Username'})
     picture = FileField('Update profile picture', validators=[FileAllowed(['png','jpg'])])
     submit = SubmitField('Update')
 

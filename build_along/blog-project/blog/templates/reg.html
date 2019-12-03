@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1 class="display-3">Regisration</h1>
+  <form method="post">
+      {% for field in form%}
+      {% if field.name == 'csrf_token'%}
+      {{form.hidden_tag()}}
+      {% elif field.name == 'submit' %}
+      <fieldset>{{ field(class="btn btn-block btn-primary") }}</fieldset>
+      {% else %}
+      <fieldset>{{ field(class="form-control form-control-lg") }}</fieldset>
+      <small class="form-text text-warning">{{ ', '.join(field.errors) }}</small>
+      {% endif %}
+      {% endfor %}
+  </form>
+{% endblock %}
