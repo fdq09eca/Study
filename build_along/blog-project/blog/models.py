@@ -6,7 +6,7 @@ from datetime import datetime
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key = True)
-    profile_img = db.Column(db.String, nullable = False, default = 'default_profile_img.png')
+    profile_image = db.Column(db.String, nullable = True, server_default = 'default_profile_img.png')
     email = db.Column(db.String, unique = True, index = True)
     username = db.Column(db.String, unique = True, index = True)
     password_hash = db.Column(db.String)

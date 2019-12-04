@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if current_user.is_authenticated %}
+
+  <h1 class="display-3">Account</h1>
+  <small class="text-sm">Update your account detail.</small>
+  <p class="text-muted">
+    Use hard reload (<kbd>Ctrl/Cmd + Shift + R</kbd>) to see the updated profile image.
+  </p>
+    <hr class="m-y-md">
+    <p class="lead">
+
+        <img src="{{ profile_image }}" class="rounded mx-auto d-block" alt="user_profile_img">
+
+    </p>
+
+
+
+    <form method="post" action="" enctype="multipart/form-data">
+        {% for field in form%}
+        {% if field.name == 'csrf_token'%}
+        {{form.hidden_tag()}}
+        {% elif field.name == 'submit' %}
+        <fieldset>{{ field(class="btn btn-block btn-primary") }}</fieldset>
+        {% else %}
+        <!-- <fieldset>{{ field.label }}</fieldset> -->
+        <fieldset>{{ field(class="form-control form-control-lg") }}</fieldset>
+        <small class="form-text text-warning">{{ ', '.join(field.errors) }}</small>
+        {% endif %}
+        {% endfor %}
+    </form>
+{% else %}
+<h2>Please Login.</h2>
+        <a class="btn btn-primary" href="{{url_for("users.login")}}" role="button"></a>
+{% endif %}
+
+{% endblock %}

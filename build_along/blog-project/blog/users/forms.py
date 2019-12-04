@@ -27,12 +27,14 @@ class Reg_form(FlaskForm):
 class Update_User_form(FlaskForm):
     email = StringField('Email ', validators=[Email(), DataRequired()], render_kw={"placeholder": 'Email'})
     username = StringField('Username ', validators=[DataRequired()], render_kw={"placeholder": 'Username'})
-    picture = FileField('Update profile picture', validators=[FileAllowed(['png','jpg'])])
+    picture = FileField('Update profile picture', validators=[FileAllowed(['png', 'jpg'])])
     submit = SubmitField('Update')
 
     def validate_email(self, email):
-        if User.query.filter_by(email=email.data).first():
-            raise ValidationError('Email has been registered')
+        if email.data != current_user.email:
+            if User.query.filter_by(email=email.data).first():
+                raise ValidationError('Email has been registered')
     def validate_username(self, username):
-        if User.query.filter_by(username=username.data).first():
-            raise ValidationError('Username has been registered')
+        if username.data != current_user.username: #what is the different between ''!='' and 'not'
+            if User.query.filter_by(username=username.data).first():
+                raise ValidationError('Username has been registered')
