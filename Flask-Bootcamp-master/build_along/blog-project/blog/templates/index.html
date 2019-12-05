@@ -2,13 +2,42 @@
 {% block content %}
 <div class="jumbotron">
   <h1 class="display-3">Index</h1>
-  <p class="lead">
+
   {% if current_user.is_authenticated %}
-        Hello, {{ current_user.username }}.
+    <p class="lead">Hello, {{ current_user.username }}.</p>
   {% else %}
-  It is a blog building project.
+  <p class="lead">It is a blog building project.</p>
   {% endif %}
-</p>
-  <hr class="m-y-md">
+  <div class="container">
+      List of posts here
+    {% for post in posts.items %}
+    <div class="card">
+  <div class="card-body">
+      <h2> <a class="" href="{{ url_for('posts.view_post', post_id=post.id) }}"></a>{{ post.title }}</h2>
+      <a href="url_for('users.user_posts', username=post.author.username)">{{post.author.username}}</a>
+      <p>Published: {{ post.date.strftime('%B %d, %Y') }}</p>
+      <a class="btn btn-primary" href="{{url_for('posts.view_post', post_id=post.id)}}">Read</a>
+  </div>
+</div>
+    {% endfor %}
+</div>
+<hr class="m-y-md">
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+      {% for page_n in posts.iter_pages(left_edge=1, right_edge=1, left_current = 1, right_current = 2) %}
+
+      {% if posts.page == page_n %}
+        <li class="page-item disable"><a class="page-link" href="{{ url_for('core.index', page = page_num) }}">{{page_n}}</a></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="{{ url_for('core.index', page = page_num) }}">{{page_n}}</a></li>
+      {% endif %}
+
+    {% endfor %}
+    {# <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li> #}
+  </ul>
+</nav>
+
 </div>
 {% endblock %}

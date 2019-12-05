@@ -16,8 +16,9 @@
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="http://v4-alpha.getbootstrap.com/examples/starter-template/starter-template.css">
     <!-- My CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
   </head>
+
   {% for mess in get_flashed_messages(category_filter=["ng"]) %}
   <div class="alert alert-danger" role="alert">
     {{ mess }}
@@ -48,10 +49,10 @@
         </li>
         {% if current_user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="#">Create Post</a>
+          <a class="nav-link" href="{{url_for("posts.create_post")}}">Create Post</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Account</a>
+          <a class="nav-link" href="{{url_for("users.acc")}}">Account</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{url_for("users.logout")}}">Logout</a>

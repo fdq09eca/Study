@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <h1>Welcome for the page for {{user.username}}</h1>
+        <img src="{{ url_for('static', filename='profile_pics/' + current_user.profile_img) }}" alt="user_profile_img">
+    </div>
+
+
+{% for post in posts_by_user.items %}
+        <h2> <a href="{{ url_for('posts.post', post_id = post.id) }}"></a>{{ post.title }}</h2>
+        written by: <a href="{{url_for('urers.user_posts', username=post.author.username)}}">{{post.author.username}}</a>
+        <p>Published on: {{ post.date.strftime('%Y-%m-%d') }}</p>
+        <br>
+        <p>{{post.text}}</p>
+        <br>
+{% endfor %}
+</div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+          {% for page_n in posts_by_user.iter_pages(left_edge=1, right_edge=1, left_current = 1, right_current = 2) %}
+
+          {% if posts_by_user.page == page_n %}
+            <li class="page-item disable"><a class="page-link" href="{{ url_for('users.user_posts', username = user.username, page = page_num) }}">{{page_n}}</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('users.user_posts', username = user.username, page = page_num) }}">{{page_n}}</a></li>
+          {% endif %}
+
+        {% endfor %}
+        {# <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li> #}
+      </ul>
+    </nav>
+
+{% endblock %}

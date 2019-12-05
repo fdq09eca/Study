@@ -15,7 +15,7 @@ app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir,'data.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1 # for instant update of profile pic
 db = SQLAlchemy(app)
 Migrate(app,db)
 
