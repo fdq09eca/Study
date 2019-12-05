@@ -70,5 +70,5 @@ def acc():
 def user_posts(username):
     page = request.args.get('page',1,type=int) #paginate
     user = User.query.filter_by(username=username).first_or_404()
-    posts_by_user = Post.query.filter_by(author=user).order_by(Post.date.desc()).pagpaginate(page = page, per_page=5)
+    posts_by_user = Post.query.filter_by(author=user).order_by(Post.date.desc()).paginate(page = page, per_page=5)
     return render_template('user_blog_posts.html', posts_by_user=posts_by_user, user=user)

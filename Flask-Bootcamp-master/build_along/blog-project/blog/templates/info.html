@@ -14,7 +14,11 @@
         </code>,see <a href="https://www.youtube.com/watch?v=CxCK1DkikgA">Here</a> </li>
     <li class="list-group-item">
         <blockquote cite="https://www.reddit.com/r/flask/comments/67lu0m/flasklogin_why_do_you_have_to_validate_a_next_url/">
-        <code>return redirect(url_for(request.args.get('next', 'index')))</code></blockquote>The 1st argument <code>'next'</code> is grabing the <code>'next'</code> parameters in the url and the 2nd argument <code>'index'</code> forces the parameters values.<br>For example: <code>http://yourealsite.com/login/?<kbd>next</kbd>=<kbd>http://my-fake-malicous-site.com/login/</kbd></code> the 2nd argument forces 'index' to be the value of next instead of some suspciou endpoint, see <a href="https://stackoverflow.com/questions/15182696/multiple-parameters-in-in-flask-approute">here</a>, <a href="https://werkzeug.palletsprojects.com/en/0.16.x/datastructures/#werkzeug.datastructures.MultiDict.get">here</a> and <a href="https://github.com/lingthio/Flask-User/issues/119">here</a>.</li>
+        <code>return redirect(url_for(request.args.get('next', 'index')))</code></blockquote>The 1st argument <code>'next'</code> is grabing the <code>'next'</code> parameters in the url and the 2nd argument <code>'index'</code> forces the parameters values.<br>For example: <code>http://yourealsite.com/login/?<kbd>next</kbd>=<kbd>http://my-fake-malicous-site.com/login/</kbd></code> the 2nd argument forces 'index' to be the value of next instead of some suspciou endpoint, see <a href="https://stackoverflow.com/questions/15182696/multiple-parameters-in-in-flask-approute">here</a>, <a href="https://werkzeug.palletsprojects.com/en/0.16.x/datastructures/#werkzeug.datastructures.MultiDict.get">here</a> and <a> href="https://github.com/lingthio/Flask-User/issues/119">here</a>.</li>
+        <li class="list-group-item">when there is route error and it is dealing with the login required page, check if the url is clean. If not, go to a clean one for example, <strong>Index/Home</strong>. If yes, check there is typo, or if you have put the {% raw %} {{ }} {%endraw%} before the <code>url_for</code> in the jinja template</li>
+        <li class="list-group-item">If upload file does not received, check if you have put <code>enctype</code> in the <code>form</code> in the jinja template</li>
+        <li class="list-group-item">No typo: for <code>route</code>/ <code>request</code> <code><strong>methods</strong></code> not <code>method</code>, <code> <strong>"GET"</strong> </code> not <code>"get"</code></li>
+
 
 </ul>
 </div>

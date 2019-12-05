@@ -15,7 +15,7 @@ def create_post():
         post = Post(title = form.title.data, text = form.text.data, user_id= current_user.id)
         db.session.add(post)
         db.session.commit()
-        flash('Post created')
+        flash('Post created', 'ok')
         return redirect(url_for('core.index'))
     return render_template('create_post.html', form=form)
 
@@ -36,7 +36,7 @@ def update_post(post_id):
         post.title = form.title.data
         post.text = form.text.data
         db.session.commit()
-        flash('Post updated')
+        flash('Post updated', 'ok')
         return redirect(url_for('posts.view_post', post_id = post.id))
     elif request.method == 'GET':
         form.title.data = post.title
@@ -51,5 +51,5 @@ def del_post(post_id):
         abort(403)
     db.session.delete(post)
     db.session.commit()
-    flash('Post deleted')
+    flash('Post deleted', 'ng')
     return redirect(url_for('core.index'))
