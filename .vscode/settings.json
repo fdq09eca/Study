@@ -1,4 +1,8 @@
 {
     "python.pythonPath": "flaskenv/bin/python3",
-    "editor.fontSize": 16
+    "editor.fontSize": 16,
+    "python.linting.pylintEnabled": true,
+    "python.linting.flake8Enabled": false,
+    "python.linting.enabled": true,
+    "python.linting.pylamaEnabled": false
 }
