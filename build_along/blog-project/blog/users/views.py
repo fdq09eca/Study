@@ -71,4 +71,4 @@ def user_posts(user_id):
     posts_by_users = Post.query.filter_by(author=user).order_by(Post.date.desc())
     # return render_template('user_page.html', posts_by_users=posts_by_users)
     return render_template('user_page.html', user=user, posts_by_users=posts_by_users)
-    # try one
+    # try two
