@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
+Hello, here is {{user.username}} personal page, the following posts are written by {{user.username}}.
+<hr>
 
-{% for post in posts %}
+{% for post in posts_by_users %}
 <!-- <img src="{{url_for('static',filename='profile_img/'+ post.users.profile_image)}}" alt=""> -->
 <hr>
 <div class="inner cover">
@@ -15,11 +17,4 @@
 <hr>
 {% endfor %}
 
-  <p class="lead text-center">
-      {% if current_user.is_authenticated %}
-    <a class="btn btn-danger btn-lg " href="{{url_for('users.logout')}}" role="button">Logout</a>
-  </p>
-  {%else%}
-  <a class="btn btn-primary btn-lg " href="{{url_for('users.login')}}" role="button">Login</a>
-  {% endif %}
 {% endblock %}
